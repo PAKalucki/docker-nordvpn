@@ -1,0 +1,29 @@
+name: master
+
+on:
+  pull_request:
+    branches: master
+  push:
+    branches: master
+    tags:
+
+jobs:
+  buildx:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: crazy-max/ghaction-docker-buildx@v1
+        with:
+          version: latest
+
+      - name: Available platforms
+        run: echo ${{ steps.buildx.outputs.platforms }}
+
+      - name: Build and deploy
+        run: |
+          docker login -u ${{ secrets.DOCKER_HUB_USER }} -p ${{ secrets.DOCKER_HUB_PASSWORD }}
+          docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 --tag "pakalucki/nordpvn:latest" --file Dockerfile --push .
