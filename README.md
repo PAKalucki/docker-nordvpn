@@ -1,5 +1,6 @@
 ## NORDVPN Container
-https://github.com/PAKalucki/devops/tree/master/dockerfiles/nordvpn
+
+![](https://github.com/pakalucki/docker-nordvpn/workflows/master/badge.svg)
 
 Pass "random" to connect to random server or pick server name like "us1722".
 
