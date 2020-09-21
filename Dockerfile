@@ -14,9 +14,9 @@ RUN apk add --update openvpn iptables openvpn-auth-pam unzip && \
     sed -i 's/auth-user-pass/auth-user-pass \/etc\/openvpn\/auth/g' /etc/openvpn/ovpn_tcp/*.ovpn && \
     rm -rf /tmp/* /var/tmp/* /var/cache/apk/* /var/cache/distfiles/* /tmp/ovpn.zip
 
-COPY entrypoint.sh /usr/local/bin/
-
 USER nordvpn
+
+COPY entrypoint.sh /usr/local/bin/
 
 ENTRYPOINT ["entrypoint.sh"]
 CMD ["--help"]
