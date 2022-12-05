@@ -8,7 +8,7 @@ EXPOSE 1194/udp
 
 ADD https://downloads.nordcdn.com/configs/archives/servers/ovpn.zip /tmp/ovpn.zip
 
-RUN apk add --update openvpn iptables openvpn-auth-pam unzip && \
+RUN apk add --update curl openvpn iptables openvpn-auth-pam unzip && \
     unzip /tmp/ovpn.zip -d /etc/openvpn && \
     sed -i 's/auth-user-pass/auth-user-pass \/etc\/openvpn\/auth/g' /etc/openvpn/ovpn_udp/*.ovpn && \
     sed -i 's/auth-user-pass/auth-user-pass \/etc\/openvpn\/auth/g' /etc/openvpn/ovpn_tcp/*.ovpn && \
